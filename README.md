@@ -1,5 +1,5 @@
 # Grožio salonų paslaugų ir rezervacijų valdymo sistema.
-Saityno taikomųjų programų projektavimo (T120B165) projektas, KTU Informatikos fakultetas.
+Saityno taikomųjų programų projektavimo (T120B165) projektas, KTU informatikos fakultetas.
 
 **Autorė:** Lina Povilionytė, IFF-3/5
 
