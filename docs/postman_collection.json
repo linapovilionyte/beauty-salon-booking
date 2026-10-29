@@ -1,0 +1,257 @@
+
+{
+  "info": {
+    "name": "Beauty Salon Booking API",
+    "description": "Lab 1 collection for testing salon, service, and reservation REST API endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000/api"
+    },
+    {
+      "key": "salonId",
+      "value": "1"
+    },
+    {
+      "key": "serviceId",
+      "value": "1"
+    },
+    {
+      "key": "reservationId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Salons",
+      "item": [
+        {
+          "name": "List salons",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/salons"
+          }
+        },
+        {
+          "name": "Create salon",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Grožio studija Vilnius\",\n  \"address\": \"Gedimino pr. 10, Vilnius\",\n  \"phone\": \"+37060000000\",\n  \"email\": \"info@grozio-studija.lt\",\n  \"description\": \"Grožio paslaugos ir procedūros\"\n}"
+            },
+            "url": "{{baseUrl}}/salons"
+          }
+        },
+        {
+          "name": "Get salon",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/salons/{{salonId}}"
+          }
+        },
+        {
+          "name": "Update salon",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Atnaujintas grožio salono aprašymas\"\n}"
+            },
+            "url": "{{baseUrl}}/salons/{{salonId}}"
+          }
+        },
+        {
+          "name": "Delete salon",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/salons/{{salonId}}"
+          }
+        },
+        {
+          "name": "List salon services (nested endpoint)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/salons/{{salonId}}/services"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "List services",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/services"
+          }
+        },
+        {
+          "name": "Create service",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"salon_id\": 1,\n  \"name\": \"Moteriškas kirpimas\",\n  \"description\": \"Plaukų kirpimas ir formavimas\",\n  \"duration_minutes\": 45,\n  \"price\": 25.00\n}"
+            },
+            "url": "{{baseUrl}}/services"
+          }
+        },
+        {
+          "name": "Get service",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/services/{{serviceId}}"
+          }
+        },
+        {
+          "name": "Update service",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": 30.00\n}"
+            },
+            "url": "{{baseUrl}}/services/{{serviceId}}"
+          }
+        },
+        {
+          "name": "Delete service",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/services/{{serviceId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reservations",
+      "item": [
+        {
+          "name": "List reservations",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reservations"
+          }
+        },
+        {
+          "name": "Create reservation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"service_id\": 1,\n  \"client_name\": \"Aistė Petrauskaitė\",\n  \"client_email\": \"aiste@example.com\",\n  \"client_phone\": \"+37061111111\",\n  \"reservation_datetime\": \"2027-01-15T10:00:00\",\n  \"status\": \"pending\",\n  \"notes\": \"Pirmas apsilankymas\"\n}"
+            },
+            "url": "{{baseUrl}}/reservations"
+          }
+        },
+        {
+          "name": "Get reservation",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reservations/{{reservationId}}"
+          }
+        },
+        {
+          "name": "Update reservation",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"confirmed\"\n}"
+            },
+            "url": "{{baseUrl}}/reservations/{{reservationId}}"
+          }
+        },
+        {
+          "name": "Delete reservation",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/reservations/{{reservationId}}"
+          }
+        }
+      ]
+    }
+  ]
+}

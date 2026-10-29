@@ -1,0 +1,25 @@
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Laravel generated files
+/backend/storage/logs/*
+/backend/storage/framework/cache/*
+/backend/storage/framework/sessions/*
+/backend/storage/framework/views/*
+/backend/bootstrap/cache/*.php
+
+# Local databases
+/backend/database/*.sqlite
+
+# IDE and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

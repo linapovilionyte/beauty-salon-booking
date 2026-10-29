@@ -1,0 +1,340 @@
+openapi: 3.0.3
+info:
+  title: Beauty Salon Booking API
+  version: 1.0.0
+  description: REST API for managing beauty salons, services, and reservations.
+servers:
+  - url: http://127.0.0.1:8000/api
+    description: Local Laravel development server
+
+tags:
+  - name: Salons
+  - name: Services
+  - name: Reservations
+
+paths:
+  /salons:
+    get:
+      tags: [Salons]
+      summary: List all salons
+      responses:
+        '200':
+          description: Salons returned successfully
+    post:
+      tags: [Salons]
+      summary: Create a salon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SalonInput'
+      responses:
+        '201':
+          description: Salon created
+        '422':
+          description: Validation error
+
+  /salons/{salon}:
+    parameters:
+      - $ref: '#/components/parameters/SalonId'
+    get:
+      tags: [Salons]
+      summary: Get a salon
+      responses:
+        '200':
+          description: Salon returned
+        '404':
+          description: Salon not found
+    patch:
+      tags: [Salons]
+      summary: Update a salon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SalonInput'
+      responses:
+        '200':
+          description: Salon updated
+        '404':
+          description: Salon not found
+        '422':
+          description: Validation error
+    put:
+      tags: [Salons]
+      summary: Update a salon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SalonInput'
+      responses:
+        '200':
+          description: Salon updated
+        '404':
+          description: Salon not found
+        '422':
+          description: Validation error
+    delete:
+      tags: [Salons]
+      summary: Delete a salon
+      responses:
+        '204':
+          description: Salon deleted
+        '404':
+          description: Salon not found
+
+  /salons/{salon}/services:
+    parameters:
+      - $ref: '#/components/parameters/SalonId'
+    get:
+      tags: [Services]
+      summary: List services belonging to a salon
+      responses:
+        '200':
+          description: Services returned
+        '404':
+          description: Salon not found
+
+  /services:
+    get:
+      tags: [Services]
+      summary: List all services
+      responses:
+        '200':
+          description: Services returned
+    post:
+      tags: [Services]
+      summary: Create a service
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceInput'
+      responses:
+        '201':
+          description: Service created
+        '422':
+          description: Validation error
+
+  /services/{service}:
+    parameters:
+      - $ref: '#/components/parameters/ServiceId'
+    get:
+      tags: [Services]
+      summary: Get a service
+      responses:
+        '200':
+          description: Service returned
+        '404':
+          description: Service not found
+    patch:
+      tags: [Services]
+      summary: Update a service
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceInput'
+      responses:
+        '200':
+          description: Service updated
+        '404':
+          description: Service not found
+        '422':
+          description: Validation error
+    put:
+      tags: [Services]
+      summary: Update a service
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceInput'
+      responses:
+        '200':
+          description: Service updated
+        '404':
+          description: Service not found
+        '422':
+          description: Validation error
+    delete:
+      tags: [Services]
+      summary: Delete a service
+      responses:
+        '204':
+          description: Service deleted
+        '404':
+          description: Service not found
+
+  /reservations:
+    get:
+      tags: [Reservations]
+      summary: List all reservations
+      responses:
+        '200':
+          description: Reservations returned
+    post:
+      tags: [Reservations]
+      summary: Create a reservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationInput'
+      responses:
+        '201':
+          description: Reservation created
+        '422':
+          description: Validation error
+
+  /reservations/{reservation}:
+    parameters:
+      - $ref: '#/components/parameters/ReservationId'
+    get:
+      tags: [Reservations]
+      summary: Get a reservation
+      responses:
+        '200':
+          description: Reservation returned
+        '404':
+          description: Reservation not found
+    patch:
+      tags: [Reservations]
+      summary: Update a reservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationInput'
+      responses:
+        '200':
+          description: Reservation updated
+        '404':
+          description: Reservation not found
+        '422':
+          description: Validation error
+    put:
+      tags: [Reservations]
+      summary: Update a reservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationInput'
+      responses:
+        '200':
+          description: Reservation updated
+        '404':
+          description: Reservation not found
+        '422':
+          description: Validation error
+    delete:
+      tags: [Reservations]
+      summary: Delete a reservation
+      responses:
+        '204':
+          description: Reservation deleted
+        '404':
+          description: Reservation not found
+
+components:
+  parameters:
+    SalonId:
+      name: salon
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Salon ID
+    ServiceId:
+      name: service
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Service ID
+    ReservationId:
+      name: reservation
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Reservation ID
+
+  schemas:
+    SalonInput:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        address:
+          type: string
+          maxLength: 255
+        phone:
+          type: string
+          nullable: true
+        email:
+          type: string
+          format: email
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      required: [name, address]
+
+    ServiceInput:
+      type: object
+      properties:
+        salon_id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        duration_minutes:
+          type: integer
+          minimum: 1
+        price:
+          type: number
+          minimum: 0
+      required: [salon_id, name, duration_minutes, price]
+
+    ReservationInput:
+      type: object
+      properties:
+        service_id:
+          type: integer
+        client_name:
+          type: string
+        client_email:
+          type: string
+          format: email
+        client_phone:
+          type: string
+          nullable: true
+        reservation_datetime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [pending, confirmed, cancelled, completed]
+        notes:
+          type: string
+          nullable: true
+      required:
+        - service_id
+        - client_name
+        - client_email
+        - reservation_datetime
