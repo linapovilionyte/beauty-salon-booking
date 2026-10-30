@@ -1,28 +1,12 @@
-
 {
   "info": {
+    "_postman_id": "0b0b4779-f2e4-4706-bc1c-283d97c73f06",
     "name": "Beauty Salon Booking API",
     "description": "Lab 1 collection for testing salon, service, and reservation REST API endpoints.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59320998",
+    "_collection_link": "https://go.postman.co/collection/59320998-0b0b4779-f2e4-4706-bc1c-283d97c73f06?source=collection_link"
   },
-  "variable": [
-    {
-      "key": "baseUrl",
-      "value": "http://127.0.0.1:8000/api"
-    },
-    {
-      "key": "salonId",
-      "value": "1"
-    },
-    {
-      "key": "serviceId",
-      "value": "1"
-    },
-    {
-      "key": "reservationId",
-      "value": "1"
-    }
-  ],
   "item": [
     {
       "name": "Salons",
@@ -31,11 +15,32 @@
           "name": "List salons",
           "request": {
             "method": "GET",
-            "url": "{{baseUrl}}/salons"
-          }
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/salons",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "salons"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Create salon",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Salon created successfully\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Save created salon ID\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response).to.have.property(\"id\");\r\n\r\n    pm.collectionVariables.set(\"salonId\", response.id);\r\n});"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [
@@ -50,17 +55,42 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Grožio studija Vilnius\",\n  \"address\": \"Gedimino pr. 10, Vilnius\",\n  \"phone\": \"+37060000000\",\n  \"email\": \"info@grozio-studija.lt\",\n  \"description\": \"Grožio paslaugos ir procedūros\"\n}"
+              "raw": "{\n  \"name\": \"Grožio studija Vilnius\",\n  \"address\": \"Gedimino pr. 10, Vilnius\",\n  \"phone\": \"+37060000000\",\n  \"email\": \"info@grozio-studija.lt\",\n  \"description\": \"Grožio paslaugos ir procedūros\"\n}",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
             },
-            "url": "{{baseUrl}}/salons"
-          }
+            "url": {
+              "raw": "{{baseUrl}}/salons",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "salons"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Get salon",
           "request": {
             "method": "GET",
-            "url": "{{baseUrl}}/salons/{{salonId}}"
-          }
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/salons/{{salonId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "salons",
+                "{{salonId}}"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Update salon",
@@ -80,8 +110,18 @@
               "mode": "raw",
               "raw": "{\n  \"description\": \"Atnaujintas grožio salono aprašymas\"\n}"
             },
-            "url": "{{baseUrl}}/salons/{{salonId}}"
-          }
+            "url": {
+              "raw": "{{baseUrl}}/salons/{{salonId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "salons",
+                "{{salonId}}"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Delete salon",
@@ -93,15 +133,37 @@
                 "value": "application/json"
               }
             ],
-            "url": "{{baseUrl}}/salons/{{salonId}}"
-          }
+            "url": {
+              "raw": "{{baseUrl}}/salons/{{salonId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "salons",
+                "{{salonId}}"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "List salon services (nested endpoint)",
           "request": {
             "method": "GET",
-            "url": "{{baseUrl}}/salons/{{salonId}}/services"
-          }
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/salons/{{salonId}}/services",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "salons",
+                "{{salonId}}",
+                "services"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -112,11 +174,32 @@
           "name": "List services",
           "request": {
             "method": "GET",
-            "url": "{{baseUrl}}/services"
-          }
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/services",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Create service",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Service created successfully\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Save created service ID\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response).to.have.property(\"id\");\r\n\r\n    pm.collectionVariables.set(\"serviceId\", response.id);\r\n});"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [
@@ -131,17 +214,42 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"salon_id\": 1,\n  \"name\": \"Moteriškas kirpimas\",\n  \"description\": \"Plaukų kirpimas ir formavimas\",\n  \"duration_minutes\": 45,\n  \"price\": 25.00\n}"
+              "raw": "{\n  \"salon_id\": {{salonId}},\n  \"name\": \"Moteriškas kirpimas\",\n  \"description\": \"Plaukų kirpimas ir formavimas\",\n  \"duration_minutes\": 45,\n  \"price\": 25.00\n}",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
             },
-            "url": "{{baseUrl}}/services"
-          }
+            "url": {
+              "raw": "{{baseUrl}}/services",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Get service",
           "request": {
             "method": "GET",
-            "url": "{{baseUrl}}/services/{{serviceId}}"
-          }
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/services/{{serviceId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "services",
+                "{{serviceId}}"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Update service",
@@ -161,8 +269,18 @@
               "mode": "raw",
               "raw": "{\n  \"price\": 30.00\n}"
             },
-            "url": "{{baseUrl}}/services/{{serviceId}}"
-          }
+            "url": {
+              "raw": "{{baseUrl}}/services/{{serviceId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "services",
+                "{{serviceId}}"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Delete service",
@@ -174,8 +292,18 @@
                 "value": "application/json"
               }
             ],
-            "url": "{{baseUrl}}/services/{{serviceId}}"
-          }
+            "url": {
+              "raw": "{{baseUrl}}/services/{{serviceId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "services",
+                "{{serviceId}}"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -186,11 +314,32 @@
           "name": "List reservations",
           "request": {
             "method": "GET",
-            "url": "{{baseUrl}}/reservations"
-          }
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reservations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reservations"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Create reservation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Reservation created successfully\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Save created reservation ID\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response).to.have.property(\"id\");\r\n\r\n    pm.collectionVariables.set(\"reservationId\", response.id);\r\n});"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [
@@ -205,17 +354,42 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"service_id\": 1,\n  \"client_name\": \"Aistė Petrauskaitė\",\n  \"client_email\": \"aiste@example.com\",\n  \"client_phone\": \"+37061111111\",\n  \"reservation_datetime\": \"2027-01-15T10:00:00\",\n  \"status\": \"pending\",\n  \"notes\": \"Pirmas apsilankymas\"\n}"
+              "raw": "{\n  \"service_id\": 1,\n  \"client_name\": \"Aistė Petrauskaitė\",\n  \"client_email\": \"aiste@example.com\",\n  \"client_phone\": \"+37061111111\",\n  \"reservation_datetime\": \"2027-01-15T10:00:00\",\n  \"status\": \"pending\",\n  \"notes\": \"Pirmas apsilankymas\"\n}",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
             },
-            "url": "{{baseUrl}}/reservations"
-          }
+            "url": {
+              "raw": "{{baseUrl}}/reservations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reservations"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Get reservation",
           "request": {
             "method": "GET",
-            "url": "{{baseUrl}}/reservations/{{reservationId}}"
-          }
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reservations/{{reservationId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reservations",
+                "{{reservationId}}"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Update reservation",
@@ -235,8 +409,18 @@
               "mode": "raw",
               "raw": "{\n  \"status\": \"confirmed\"\n}"
             },
-            "url": "{{baseUrl}}/reservations/{{reservationId}}"
-          }
+            "url": {
+              "raw": "{{baseUrl}}/reservations/{{reservationId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reservations",
+                "{{reservationId}}"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Delete reservation",
@@ -248,10 +432,38 @@
                 "value": "application/json"
               }
             ],
-            "url": "{{baseUrl}}/reservations/{{reservationId}}"
-          }
+            "url": {
+              "raw": "{{baseUrl}}/reservations/{{reservationId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reservations",
+                "{{reservationId}}"
+              ]
+            }
+          },
+          "response": []
         }
       ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000/api"
+    },
+    {
+      "key": "salonId",
+      "value": "1"
+    },
+    {
+      "key": "serviceId",
+      "value": "1"
+    },
+    {
+      "key": "reservationId",
+      "value": "1"
     }
   ]
 }
